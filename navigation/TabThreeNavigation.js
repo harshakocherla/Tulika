@@ -9,7 +9,7 @@ import { NavigatorTabThree } from './TabThreeNavConf';
 import { connect } from 'react-redux';
 
 // Icon
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Entypo } from '@expo/vector-icons';
 
 const mapStateToProps = state => {
   return {
@@ -19,9 +19,9 @@ const mapStateToProps = state => {
 
 class TabThreeNavigation extends React.Component {
   static navigationOptions = {
-    tabBarLabel: 'Tab Three',
+    tabBarLabel: 'Cart',
     tabBarIcon: ({ tintColor }) => (
-      <Icon size={20} name={'cogs'} color={tintColor} />
+      <Entypo size={20} name={'shopping-cart'} color={tintColor} />
     ),
   };
   render() {

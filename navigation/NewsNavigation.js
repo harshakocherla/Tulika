@@ -3,31 +3,33 @@ import React from 'react';
 
 // Navigation
 import { addNavigationHelpers } from 'react-navigation';
-import { NavigatorTabTwo } from './TabTwoNavConf';
+import { NavigatorNews } from './NewsNavConf';
 
 // Redux
 import { connect } from 'react-redux';
 
 // Icon
+import Icon from 'react-native-vector-icons/FontAwesome';
+import FontAwesome, { Icons } from 'react-native-fontawesome';
 import { Entypo } from '@expo/vector-icons';
 
 const mapStateToProps = state => {
   return {
-    navigationState: state.tabTwo,
+    navigationState: state.news,
   };
 };
 
-class TabTwoNavigation extends React.Component {
+class NewsNavigation extends React.Component {
   static navigationOptions = {
-    tabBarLabel: 'Tab Two',
+    tabBarLabel: 'News',
     tabBarIcon: ({ tintColor }) => (
-      <Entypo name="circle" size={20} color={tintColor} />
+      <Entypo name="news" size={20} color={tintColor} />
     ),
   };
   render() {
     const { navigationState, dispatch, addListner } = this.props;
     return (
-      <NavigatorTabTwo
+      <NavigatorNews
         navigation={addNavigationHelpers({
           dispatch: dispatch,
           state: navigationState,
@@ -37,4 +39,4 @@ class TabTwoNavigation extends React.Component {
     );
   }
 }
-export default connect(mapStateToProps)(TabTwoNavigation);
+export default connect(mapStateToProps)(NewsNavigation);

@@ -14,20 +14,15 @@ export default class TabThreeScreenOne extends Component {
       >
         <Text>{'Tab Three Screen One'}</Text>
         <TouchableOpacity
-          onPress={() =>
-            this.props.navigation.dispatch({
-              type: 'JUMP_TO_TAB',
-              payload: { index: 0 },
-            })
-          }
+          onPress={() => this.props.navigation.navigate('TabThreeScreenTwo')}
           style={{
             padding: 20,
             borderRadius: 20,
-            backgroundColor: 'deeppink',
+            backgroundColor: 'yellow',
             marginTop: 20,
           }}
         >
-          <Text>{'jump to tab one'}</Text>
+          <Text>{'Check out'}</Text>
         </TouchableOpacity>
       </View>
     );

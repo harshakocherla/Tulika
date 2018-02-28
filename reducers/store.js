@@ -12,6 +12,7 @@ import { TabBar } from '../navigation/RootNavConf';
 //Reducer
 
 import { tabBarReducer } from './reducer_TabBar';
+import { NavigatorNews } from '../navigation/NewsNavConf';
 
 // Middleware
 const middleware = () => {
@@ -27,6 +28,8 @@ export default createStore(
       NavigatorTabTwo.router.getStateForAction(action, state),
     tabThree: (state, action) =>
       NavigatorTabThree.router.getStateForAction(action, state),
+    news: (state, action) =>
+      NavigatorNews.router.getStateForAction(action, state),
   }),
   middleware(),
 );
