@@ -7,12 +7,14 @@ export default class TabOneScreenOne extends Component {
       <View
         style={{
           flex: 1,
-          backgroundColor: 'red',
+          backgroundColor: '#f0f0f0',
           alignItems: 'center',
           justifyContent: 'center',
         }}
       >
-        <Text>{'Tab One Screen One'}</Text>
+        <Text style={{ fontFamily: 'dinalternate' }}>
+          {'Tab One Screen One'}
+        </Text>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('TabOneScreenTwo')}
           style={{
@@ -22,7 +24,9 @@ export default class TabOneScreenOne extends Component {
             marginTop: 20,
           }}
         >
-          <Text>{'Go to next screen this tab'}</Text>
+          <Text style={{ fontFamily: 'dinalternate' }}>
+            {'Go to next screen this tab'}
+          </Text>
         </TouchableOpacity>
       </View>
     );

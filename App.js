@@ -8,12 +8,32 @@ import store from './reducers/store';
 import RootNavigation from './navigation/RootNavigation';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: true,
+    };
+  }
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      Roboto_medium: require('./assets/fonts/Roboto-Medium.ttf'),
+      dinalternate: require('./assets/fonts/DINMittelschriftStd.otf'),
+    });
+
+    this.setState({ isLoading: false });
+  }
+
   render() {
-    return (
-      <Provider store={store}>
-        <RootNavigation />
-      </Provider>
-    );
+    if (this.state.isLoading) {
+      return <Expo.AppLoading />;
+    } else {
+      return (
+        <Provider store={store}>
+          <RootNavigation />
+        </Provider>
+      );
+    }
   }
 }
 

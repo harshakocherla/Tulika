@@ -1,19 +1,101 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ActivityIndicator, Alert } from 'react-native';
+
+import {
+  Container,
+  Header,
+  Body,
+  Title,
+  Content,
+  List,
+  ListItem,
+} from 'native-base';
+
+import Modal from '../components/modal';
+import DataItem from '../components/list_item';
+
+import { getArticles } from '../services/news';
 
 export default class News extends Component {
+  constructor(props) {
+    super(props);
+
+    // this._handleItemDataOnPress = this._handleItemDataOnPress.bind(this);
+    this._handleModalClose = this._handleModalClose.bind(this);
+
+    this.state = {
+      isLoading: true,
+      data: null,
+      isError: false,
+      setModalVisible: false,
+      modalArticleData: {},
+    };
+  }
+
+  // _handleItemDataOnPress(articleData) {
+  //   // this.setState({
+  //   //   setModalVisible: true,
+  //   //   modalArticleData: articleData,
+  //   // });
+  //   return ;
+  // }
+
+  _handleModalClose() {
+    this.setState({
+      setModalVisible: false,
+      modalArticleData: {},
+    });
+  }
+
+  componentDidMount() {
+    getArticles().then(
+      data => {
+        this.setState({
+          isLoading: false,
+          data: data,
+        });
+      },
+      error => {
+        Alert.alert('Error', 'Something happend, please try again');
+      },
+    );
+  }
+
   render() {
-    return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: '#f0f0f0',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Text>{'Read Art News'}</Text>
+    let view = this.state.isLoading ? (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator animating={this.state.isLoading} color="#00f0ff" />
+        <Text style={{ marginTop: 8 }} children="Please wait..." />
       </View>
+    ) : (
+      <List
+        dataArray={this.state.data}
+        renderRow={item => {
+          return (
+            <ListItem>
+              <DataItem
+                onPress={() => this.props.navigation.navigate('NewsItem', item)}
+                data={item}
+              />
+            </ListItem>
+          );
+        }}
+      />
+    );
+    return (
+      <Container>
+        <Header>
+          <Body>
+            <Title children="RN NewsApp" />
+          </Body>
+        </Header>
+        <Content
+          contentContainerStyle={{ flex: 1, backgroundColor: '#fff' }}
+          padder={false}
+        >
+          {view}
+        </Content>
+      </Container>
     );
   }
 }
