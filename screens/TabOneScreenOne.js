@@ -12,8 +12,26 @@ export default class TabOneScreenOne extends Component {
           justifyContent: 'center',
         }}
       >
-        <Text style={{ fontFamily: 'dinalternate' }}>
-          {'Tab One Screen One'}
+        <Text
+          style={{
+            fontFamily: 'dinalternate_bold',
+            // fontWeight: '600',
+            fontSize: 20,
+          }}
+        >
+          {'Tab One Screenl One'}
+        </Text>
+        <Text
+          style={{
+            fontFamily: 'dinalternate_regular',
+            // fontWeight: '400',
+            fontSize: 20,
+          }}
+        >
+          {'Tab One Screenl One'}
+        </Text>
+        <Text style={{ fontFamily: 'dinalternate', fontSize: 20 }}>
+          {'Tab One Screenl One'}
         </Text>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('TabOneScreenTwo')}

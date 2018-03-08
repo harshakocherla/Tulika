@@ -19,6 +19,8 @@ export default class App extends React.Component {
     await Expo.Font.loadAsync({
       Roboto_medium: require('./assets/fonts/Roboto-Medium.ttf'),
       dinalternate: require('./assets/fonts/DINMittelschriftStd.otf'),
+      dinalternate_regular: require('./assets/fonts/dinalternate_regular.otf'),
+      dinalternate_bold: require('./assets/fonts/dinalternate_bold.otf'),
     });
 
     this.setState({ isLoading: false });
